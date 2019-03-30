@@ -51,19 +51,21 @@ class SinglyLinkedList():
         return prev
         
     def search(self, key):
+        prev = None
         for v in self:
             if v.key == key:
                 break
+            prev = v
         else:
             v = None
         if v is not None:
             print('search: ' + str(v.key))
-        return v
+        return prev,v
         
     def delete(self, key):
         
-        v = self.search(key)
-        #empty list
+        prev,v = self.search(key)
+        #element to delete doesn't exist in the list
         if v is None:
             return None
             
@@ -76,13 +78,12 @@ class SinglyLinkedList():
         specifically, now we can say prev is None only if 
         the element to delete doesn't exist: if the element 
         did exist, it would have a prev!
+        UPDATE: nope. STOP. now search already determined whehter
+        it existed or not and returned if it didn't. 
+        hence prev must exist.
         """
-        u = self._search_for_prev(key)
-        if u is None:
-            return None
-        else:
-            v = u.next
-            u.next = v.next
-            self._len -=1
-            return v
+        v = prev.next
+        prev.next = v.next
+        self._len -=1
+        return v
             
