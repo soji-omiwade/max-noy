@@ -1,5 +1,6 @@
 import singly_linked_list as sll
 from importlib import reload as r
+from node import Node
 r(sll)
 class CircularLinkedList(sll.SinglyLinkedList):
     """
@@ -38,6 +39,9 @@ class CircularLinkedList(sll.SinglyLinkedList):
                 self.tail = prev_v
         return prev_v, v
         
-    #TODO insert should be at the tail
     def append(self, key):
-        pass
+        v = Node(key)
+        v.next = self.head
+        self.tail.next = v
+        self.tail = v
+        self._len += 1

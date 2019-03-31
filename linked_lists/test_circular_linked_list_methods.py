@@ -17,7 +17,13 @@ class TestCircularLinkedListMethods(TestLinkedListMethods):
         u,v = self.l.search(findKey)
         self.assertEqual((u.key, v.key), (0, findKey))
 
-    def test_search_tail(self):
-        pass
+    def test_tail(self):
+        self.assertEqual(self.l.tail.key, 0)
+        
+    def test_append(self):
+        self.l.append(len(self.l))
+        self.assertEqual(self.l.head.key, len(self.l)-2)
+        self.assertEqual(self.l.tail.key, len(self.l)-1)
+        
 if __name__ == '__main__':
     unittest.main()
