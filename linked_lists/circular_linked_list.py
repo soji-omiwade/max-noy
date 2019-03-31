@@ -8,9 +8,14 @@ class CircularLinkedList(sll.SinglyLinkedList):
     """
     def __init__(self):
         r(sll)
-        print('initializing some instance from a CircularLinkedList class ...')
         self.tail = None
         super().__init__()
+        
+    def search(self, key = None):
+        u, v = self.parent_search(key)
+        if v is self.head:
+            u = self.tail
+        return u, v
         
     def insert(self, key):
         self.parent_insert(key)

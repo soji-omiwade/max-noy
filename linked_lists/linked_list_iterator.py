@@ -9,7 +9,6 @@ when it's also used by cirular
 class LinkedListIterator():
 
     def __init__(self, head):
-        print('initializing a LinkedListIterator instance')
         self.curr = self.list_head = head
         self.iterationStarted = False
         

@@ -13,8 +13,10 @@ class SinglyLinkedList():
     def parent_delete(self, key):
         return self.__delete(key)
         
+    def parent_search(self, key):
+        return self.__search(key)
+        
     def __init__(self):
-        print('initializing some instance from a SinglyLinkedList class ...')
         self._len = 0
         self.head = None
 
@@ -34,37 +36,23 @@ class SinglyLinkedList():
         self._len += 1
 
     __insert = insert # b4 execution, __insert becomes __SinglyLinkedList_insert   
-    """
-    if key is not found, return None
-    otherwise, return the node previous
-    """
-    def _search_for_prev(self, key):
-        u = self.head
-        while u is not None:
-            if u.key is key:
-                break
-            prev = u
-            u = u.next
-        return prev
 
-    def search(self, key=None, search_for_last = False):
-    
-        print('searching for ', key, '...')
-        prev = None
+    def search(self, key):  
+        u = None
         for v in self: 
-            if (not search_for_last and v.key == key) or \
-            (search_for_last and v.next in (None, self.head)):
+            if (key and v.key == key) or \
+            (not key and v.next in (None, self.head)):
                 break
-            prev = v
+            u = v
         else:
-            v = None
-        if v is not None:
-            print('search found it: ', v.key)
-        return prev,v
+            u, v = None, None
+        return u,v
         
+    __search = search
+    
     def delete(self, key):
         
-        prev,v = self.search(key)
+        u,v = self.search(key)
         #element to delete doesn't exist in the list
         if v is None:
             return None, None
@@ -73,18 +61,10 @@ class SinglyLinkedList():
             self.head = v.next
             self._len -= 1
             return None, v
-        """
-        now v can never be the head, where prev is undefined
-        specifically, now we can say prev is None only if 
-        the element to delete doesn't exist: if the element 
-        did exist, it would have a prev!
-        UPDATE: nope. STOP. now search already determined whehter
-        it existed or not and returned if it didn't. 
-        hence prev must exist.
-        """
-        prev.next = v.next
+
+        u.next = v.next
         self._len -= 1
-        return prev, v
-        
+        return u, v
+
     __delete = delete
             
