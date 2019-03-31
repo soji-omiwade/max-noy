@@ -1,7 +1,9 @@
+from time import sleep
 from random import randint
+from importlib import reload as r
 import singly_linked_list as sll
-from importlib import reload
-reload(sll)
+import circular_linked_list as cll
+r(cll)
 
 def delete_all(l, from_front):
     while not l.empty():
@@ -14,35 +16,38 @@ def delete_first(l):
     if len(l) == 0:
         print('nothing deleted; list empty')
         return
-    print(l.delete(l.head).key)
+    print(l.delete(l.head.key)[1].key, 'deleted')
     
-#todo: get reid of head (i like it private)
-#instead use iterator.    
 def delete_last(l):
     if len(l) == 0:
-        print('nothing deleted; list empty')
+        print('nothing to delete; list empty')
         return
-    u = l.head
-    while u != None:
-        prev = u
-        u = u.next
-    #if len(l) == 1 or more, no prob
-    print(l.delete(prev).key)
+    v = l.search(search_for_last=True)[1]
+    print(l.delete(v.key)[1].key)
 
-def print_all(l):
+def print_all(l, stall=1):
+    counter = 0
+    reset_counter = 0
     for u in l:
-        print(u.key, end=' ')
+        print(u.key, end=' ', flush = True)
+        counter += 1
+        sleep(stall)
+        # if counter == 5:
+            # counter = 0
+            # delete_first(l)
+            # reset_counter += 1
+            # print()
+        # if reset_counter == 5:
+            # break
     print()
-"""
-usage: 
-"""
+    
 if __name__ != 'singly_linked_list':
-    l = sll.SinglyLinkedList()
+    # l = sll.SinglyLinkedList()
+    l = cll.CircularLinkedList()
     # delete_all(l, True)
     # delete_all(l, False)
     for i in range(5):
-        key = randint(0,9)
-        print(key, end=' ')
+        key = randint(0,99)
         l.insert(key)
     print_all(l)
     # delete_all(l, True)

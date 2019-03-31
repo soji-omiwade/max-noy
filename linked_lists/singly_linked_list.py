@@ -1,27 +1,25 @@
 import node
+from importlib import reload as r
+import linked_list_iterator
+r(linked_list_iterator)
+from linked_list_iterator import LinkedListIterator
 
-class Boo():
-    def __init__(self, head):
-        self.pooh = head
-    def __next__(self):
-        if not self.pooh:
-            raise StopIteration
-        else:
-            v = self.pooh
-            self.pooh = self.pooh.next
-            return v
-def search(key):
-    print('her it is sucker' + str(key))
-    exit()
+
 class SinglyLinkedList():
     
+    def parent_insert(self, key):
+        self.__insert(key)
+    
+    def parent_delete(self, key):
+        return self.__delete(key)
+        
     def __init__(self):
-        print('creating a SinglyLinkedList instance ...')
+        print('initializing some instance from a SinglyLinkedList class ...')
         self._len = 0
         self.head = None
 
     def __iter__(self):
-        return Boo(self.head)
+        return LinkedListIterator(self.head)
         
     def __len__(self):
         return self._len
@@ -35,8 +33,7 @@ class SinglyLinkedList():
             self.head = node.Node(k)
         self._len += 1
 
-        
-        
+    __insert = insert # b4 execution, __insert becomes __SinglyLinkedList_insert   
     """
     if key is not found, return None
     otherwise, return the node previous
@@ -49,17 +46,20 @@ class SinglyLinkedList():
             prev = u
             u = u.next
         return prev
-        
-    def search(self, key):
+
+    def search(self, key=None, search_for_last = False):
+    
+        print('searching for ', key, '...')
         prev = None
-        for v in self:
-            if v.key == key:
+        for v in self: 
+            if (not search_for_last and v.key == key) or \
+            (search_for_last and v.next in (None, self.head)):
                 break
             prev = v
         else:
             v = None
         if v is not None:
-            print('search: ' + str(v.key))
+            print('search found it: ', v.key)
         return prev,v
         
     def delete(self, key):
@@ -67,12 +67,12 @@ class SinglyLinkedList():
         prev,v = self.search(key)
         #element to delete doesn't exist in the list
         if v is None:
-            return None
+            return None, None
             
         if v is self.head:
             self.head = v.next
             self._len -= 1
-            return v
+            return None, v
         """
         now v can never be the head, where prev is undefined
         specifically, now we can say prev is None only if 
@@ -82,8 +82,9 @@ class SinglyLinkedList():
         it existed or not and returned if it didn't. 
         hence prev must exist.
         """
-        v = prev.next
         prev.next = v.next
-        self._len -=1
-        return v
+        self._len -= 1
+        return prev, v
+        
+    __delete = delete
             
