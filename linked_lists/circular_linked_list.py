@@ -18,6 +18,9 @@ class CircularLinkedList(sll.SinglyLinkedList):
             u = self.tail
         return u, v
         
+    def get_last(self):
+        return self.tail
+        
     def insert(self, key):
         self.parent_insert(key)
         if self.tail is None: #must be the head. i.e., first time

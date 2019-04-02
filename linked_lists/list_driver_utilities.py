@@ -22,7 +22,7 @@ def delete_last(l):
     if len(l) == 0:
         print('nothing to delete; list empty')
         return
-    v = l.search(None)[1]
+    v = l.getLast()
     print(l.delete(v.key)[1].key)
 
 def print_all(l, stall=1):

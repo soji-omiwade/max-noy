@@ -6,7 +6,9 @@ from linked_list_iterator import LinkedListIterator
 
 
 class SinglyLinkedList():
+    """
     
+    """
     def parent_insert(self, key):
         self.__insert(key)
     
@@ -37,11 +39,17 @@ class SinglyLinkedList():
 
     __insert = insert # b4 execution, __insert becomes __SinglyLinkedList_insert   
 
+    def get_last(self):
+        v = None
+        for v in self:
+            if not v.next:
+                break
+        return v    
+        
     def search(self, key):  
         u = None
         for v in self: 
-            if (key and v.key == key) or \
-            (not key and v.next in (None, self.head)):
+            if v.key == key:
                 break
             u = v
         else:
