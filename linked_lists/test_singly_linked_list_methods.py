@@ -6,10 +6,7 @@ class TestLinkedListMethods(unittest.TestCase):
         self.l = sll.SinglyLinkedList()
         for i in range(5):
             self.l.insert(i)
-
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
-    
+   
     def test_len_on_insert(self):
         old_size = len(self.l)
         self.l.insert(42)
@@ -50,13 +47,12 @@ class TestLinkedListMethods(unittest.TestCase):
                 and tail if circular_linked_list.
         """
         findKey = len(self.l)-1
-        u,v = self.l.search(findKey)
+        u, v = self.l.search(findKey)
         self.assertEqual((u, v.key), (None, findKey))
-
         
-        #TODO: # def test_insert_non_existent_element(self):
-        # self.
-        # self.l.insert(42)
+    #todo
+    # def test_insert_non_existent_element(self):
+        # pass
         
 if __name__ == '__main__':
     unittest.main()

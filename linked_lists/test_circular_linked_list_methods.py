@@ -20,6 +20,9 @@ class TestCircularLinkedListMethods(TestLinkedListMethods):
     def test_tail(self):
         self.assertEqual(self.l.tail.key, 0)
         
+    def test_get_tail(self):
+        self.assertEqual(self.l.get_last().key, 0)
+        
     def test_append(self):
         self.l.append(len(self.l))
         self.assertEqual(self.l.head.key, len(self.l)-2)
