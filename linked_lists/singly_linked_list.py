@@ -3,8 +3,14 @@ import linked_list_iterator
 from linked_list_iterator import LinkedListIterator
 
 class SinglyLinkedList():
-    """
+    """Implements a non-circular linked list.
     
+    Instances can insert or delete. 
+    Inserts are at the head, and delete specifies keys not nodes.
+    len() keeps track of number of elements
+    The parent_delete and parent_insert help achieve python-private instances of
+    insert and delete when needed
+    get_last returns the last node to clients.
     """
     def parent_insert(self, key):
         self.__insert(key)
