@@ -1,9 +1,6 @@
 import node
-from importlib import reload as r
 import linked_list_iterator
-r(linked_list_iterator)
 from linked_list_iterator import LinkedListIterator
-
 
 class SinglyLinkedList():
     """
@@ -75,4 +72,3 @@ class SinglyLinkedList():
         return u, v
 
     __delete = delete
-            

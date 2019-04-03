@@ -1,14 +1,12 @@
 import singly_linked_list as sll
-from importlib import reload as r
 from node import Node
-r(sll)
+
 class CircularLinkedList(sll.SinglyLinkedList):
     """
         usage: just some clean insert and delete implementations
 
     """
     def __init__(self):
-        r(sll)
         self.tail = None
         super().__init__()
         
