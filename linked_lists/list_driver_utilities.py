@@ -1,9 +1,7 @@
 from time import sleep
 from random import randint
-from importlib import reload as r
 import singly_linked_list as sll
 import circular_linked_list as cll
-r(cll)
 
 def delete_all(l, from_front):
     while not l.empty():
