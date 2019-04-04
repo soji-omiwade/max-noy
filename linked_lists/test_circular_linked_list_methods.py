@@ -4,6 +4,11 @@ from test_singly_linked_list_methods import TestLinkedListMethods
 
 class TestCircularLinkedListMethods(TestLinkedListMethods):
     def setUp(self):
+        """for testing insert/delete of 0,1,2,3,4 in ascending order.
+        
+        the test case here is specifically the scenario where 0,1,2,3,4
+        are added in that order.
+        """
         self.l = cll.CircularLinkedList()
         for i in range(5):
             self.l.insert(i)
