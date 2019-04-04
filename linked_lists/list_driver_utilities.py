@@ -1,3 +1,8 @@
+"""Most of the function names here are self-explanatory
+
+This script was written to test the linked list implementations, but now 
+I reserve such testing to python's unittest
+"""
 from time import sleep
 from random import randint
 import singly_linked_list as sll

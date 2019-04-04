@@ -6,8 +6,7 @@ class CircularLinkedList(sll.SinglyLinkedList):
     
     Instances can insert or delete. 
     Like its parent, inserts are at the head, and delete specifies keys not 
-    nodes.
-    append(key) inserts after the tail
+    nodes. append(key) inserts after the tail
     """
     def __init__(self):
     """This class inherits from SinglyLinkedList where a head is initialized.
