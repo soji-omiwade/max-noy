@@ -1,21 +1,23 @@
-class reverse_iterator:
+class Reverse:
+    """reverse a sequence using only the yield
+    
+        not using a counter, that is!
+    """
     def __init__(self, s):
         self.s = s
-        self.index = len(s)
-    def __next__(self):
-        if self.index == 0:
-            raise StopIteration
-        self.index -= 1
-        return self.s[self.index]
-    # for i in range(len(self.s)-1, -1, -1):
-            # yield self.s[i]
-            
-class Reverse: 
-    def __init__(self, s):
-        self.s = s
+        self.gen = self.yielder()
+    def yielder(self):
+        for i in range(len(self.s)):
+            yield self.s[len(s) - (i+1)]
     def __iter__(self):
-        return reverse_iterator(self.s)
-# s = 'helo man'    
-# t = Reverse(s)
-# for x in t:
-    # print(x, end='')
+        self.gen = self.yielder()
+        return self
+    def __next__(self):
+        return next(self.gen)
+
+s = 'helo man'  
+reverse_generator_object = Reverse(s)
+l = []
+for x in reverse_generator_object:
+    l.append(x)
+print(', '.join(l))
